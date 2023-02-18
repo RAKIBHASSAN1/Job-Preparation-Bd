@@ -11,6 +11,97 @@
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 	<style>
+		footer {
+  background-color: #333;
+  color: #fff;
+  padding: 30px 0;
+}
+
+.container1 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.col-md-4 {
+  width: calc(33.33% - 30px);
+  margin: 15px;
+}
+
+.col-sm-12 {
+  width: 100%;
+  margin: 15px 0;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.social {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social li {
+  margin-right: 15px;
+}
+
+.social a {
+  color: #fff;
+}
+
+.fa-facebook {
+  background-color: #3b5998;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.fa-twitter {
+  background-color: #1da1f2;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.fa-instagram {
+  background-color: #e4405f;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.fa-linkedin {
+  background-color: #0077b5;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+@media (max-width: 767px) {
+  .col-md-4 {
+    width: 100%;
+  }
+}
+
+		body{
+			overflow:hidden;
+		}
 		.vertical-tabs {
 			border-left: 1px solid #ccc;
 			margin-top: 20px;
@@ -286,6 +377,30 @@
 	</div>
 
 </div>
+<footer>
+  <div class="container1">
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <h3>About Us</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla gravida ultricies aliquam. Mauris eu ultricies purus.</p>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <h3>Contact Us</h3>
+        <p>123 Main Street<br>Anytown, USA 12345<br>Phone: 555-555-5555<br>Email: info@example.com</p>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <h3>Follow Us</h3>
+        <ul class="social">
+          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
 <script>
 	$(document).ready(function(){
 		$('.nav-tabs a').click(function(){
