@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
         .vertical-tabs {
@@ -28,6 +28,88 @@
             font-weight: bold;
             color: #333;
         }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            display: block;
+            margin-top: 10px;
+            padding: 5px 10px;
+        }
+
+        button.update,
+        button.cancel {
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        @media only screen and (max-width: 600px) {
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            th {
+                display: none;
+            }
+
+            tr {
+                border-bottom: 2px solid #ddd;
+            }
+
+            td {
+                border-bottom: none;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 45%;
+                padding-right: 10px;
+                font-weight: bold;
+                text-align: left;
+            }
+        }
     </style>
 </head>
 
@@ -35,7 +117,7 @@
 
     <div class="container">
         <br>
-        <h2><i style='font-size:24px' class='fas'>&#xf5da;</i> Job Preparation Bd</h2>
+        <h2><i class="fa-solid fa-chalkboard-user"></i> Job Preparation Bd</h2>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
@@ -129,9 +211,29 @@
                                 aria-labelledby="v-pills-contact-tab">
                                 <h3>Note</h3>
                                 <br>
+                                <form>
+                                    <label for="title">Title:</label>
+                                    <input type="text" id="title">
+                                    <label for="content">Content:</label>
+                                    <textarea id="content"></textarea>
+                                    <button type="button" id="add">Add Note</button>
+                                    <button type="button" id="update" class="update">Update Note</button>
+                                    <button type="button" id="cancel" class="cancel">Cancel</button>
+                                    <input type="hidden" id="index">
+                                </form>
+                                <table id="note-list">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Content</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
                             </div>
                         </div>
-                    </div><br><br>
+                    </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -228,7 +330,27 @@
                             <div class="tab-pane fade" id="b-pills-note" role="tabpanel"
                                 aria-labelledby="v-pills-contact-tab">
                                 <h3>Note</h3>
-                                <p>Content for Note goes here.</p>
+                                <br>
+                                <form>
+                                    <label for="title">Title:</label>
+                                    <input type="text" id="title">
+                                    <label for="content">Content:</label>
+                                    <textarea id="content"></textarea>
+                                    <button type="button" id="add">Add Note</button>
+                                    <button type="button" id="update" class="update">Update Note</button>
+                                    <button type="button" id="cancel" class="cancel">Cancel</button>
+                                    <input type="hidden" id="index">
+                                </form>
+                                <table id="note-list">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Content</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -328,7 +450,27 @@
                             <div class="tab-pane fade" id="g-pills-note" role="tabpanel"
                                 aria-labelledby="v-pills-contact-tab">
                                 <h3>Note</h3>
-                                <p>Content for Note goes here.</p>
+                                <br>
+                                <form>
+                                    <label for="title">Title:</label>
+                                    <input type="text" id="title">
+                                    <label for="content">Content:</label>
+                                    <textarea id="content"></textarea>
+                                    <button type="button" id="add">Add Note</button>
+                                    <button type="button" id="update" class="update">Update Note</button>
+                                    <button type="button" id="cancel" class="cancel">Cancel</button>
+                                    <input type="hidden" id="index">
+                                </form>
+                                <table id="note-list">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Content</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -336,7 +478,7 @@
             </div>
         </div>
     </div>
-
+    <br><br>
     <script>
         $(document).ready(function () {
             $('.nav-tabs a').click(function () {
@@ -346,7 +488,96 @@
                 $(this).tab('show');
             });
         });
+        const form = document.querySelector('form');
+        const titleInput = document.querySelector('#title');
+        const contentInput = document.querySelector('#content');
+        const addButton = document.querySelector('#add');
+        const updateButton = document.querySelector('#update');
+        const cancelButton = document.querySelector('#cancel');
+        const indexInput = document.querySelector('#index');
+        const noteList = document.querySelector('#note-list tbody');
 
+        let notes = [];
+
+        function renderNotes() {
+            noteList.innerHTML = '';
+            notes.forEach(function (note, index) {
+                const noteElement = document.createElement('tr');
+                noteElement.innerHTML = `
+          <td>${note.title}</td>
+          <td>${note.content}</td>
+          <td>
+            <button type="button" class="edit" data-index="${index}">Edit</button>
+            <button type="button" class="delete" data-index="${index}">Delete</button>
+          </td>
+        `;
+                noteList.appendChild(noteElement);
+            });
+        }
+
+        function addNote() {
+            const title = titleInput.value.trim();
+            const content = contentInput.value.trim();
+            if (title === '' || content === '') {
+                alert('Please enter a title and content');
+                return;
+            }
+            const note = { title, content };
+            notes.push(note);
+            alert('Note added successfully');
+            form.reset();
+            renderNotes();
+        }
+
+        function editNote() {
+            const index = parseInt(this.getAttribute('data-index'));
+            const note = notes[index];
+            titleInput.value = note.title;
+            contentInput.value = note.content;
+            indexInput.value = index;
+            addButton.style.display = 'none';
+            updateButton.style.display = 'block';
+            cancelButton.style.display = 'block';
+        }
+
+        function updateNote() {
+            const index = parseInt(indexInput.value);
+            const note = notes[index];
+            note.title = titleInput.value.trim();
+            note.content = contentInput.value.trim();
+            alert('Note updated successfully');
+            form.reset();
+            renderNotes();
+            addButton.style.display = 'block';
+            updateButton.style.display = 'none';
+            cancelButton.style.display = 'none';
+        }
+
+        function deleteNote() {
+            const index = parseInt(this.getAttribute('data-index'));
+            const note = notes[index];
+            if (confirm(`Are you sure you want to delete the note "${note.title}"?`)) {
+                notes.splice(index, 1);
+                alert('Note deleted successfully');
+                renderNotes();
+            }
+        }
+
+        addButton.addEventListener('click', addNote);
+        noteList.addEventListener('click', function (event) {
+            if (event.target.classList.contains('edit')) {
+                editNote.call(event.target);
+            } else if (event.target.classList.contains('delete')) {
+                deleteNote.call(event.target);
+            }
+        });
+        updateButton.addEventListener('click', updateNote);
+        cancelButton.addEventListener('click', function () {
+            form.reset();
+            addButton.style.display = 'block';
+            updateButton.style.display = 'none';
+            cancelButton.style.display = 'none';
+        });
     </script>
 </body>
 
