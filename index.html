@@ -25,6 +25,41 @@
 			font-weight: bold;
 			color: #333;
 		}
+		    form {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="text"], textarea {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+    button {
+      display: block;
+      margin-top: 10px;
+      padding: 5px 10px;
+    }
+    button.update, button.cancel {
+      display: none;
+    }
+
+    /* styling for the table */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
 	</style>
 </head>
 <body>
@@ -100,7 +135,26 @@
 		    <div class="tab-pane fade" id="v-pills-note" role="tabpanel" aria-labelledby="v-pills-contact-tab">
                           <h3>Note</h3>
                           <br>
-		
+		          <form>
+    <label for="title">Title:</label>
+    <input type="text" id="title">
+    <label for="content">Content:</label>
+    <textarea id="content"></textarea>
+    <button type="button" id="add">Add Note</button>
+    <button type="button" id="update" class="update">Update Note</button>
+    <button type="button" id="cancel" class="cancel">Cancel</button>
+    <input type="hidden" id="index">
+  </form>
+  <table id="note-list">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
                  </div>
               </div>
        </div><br><br>
@@ -242,5 +296,97 @@
 		});
 	});
 </script>
+  <script>
+    const form = document.querySelector('form');
+    const titleInput = document.querySelector('#title');
+    const contentInput = document.querySelector('#content');
+    const addButton = document.querySelector('#add');
+    const updateButton = document.querySelector('#update');
+    const cancelButton = document.querySelector('#cancel');
+    const indexInput = document.querySelector('#index');
+    const noteList = document.querySelector('#note-list tbody');
+
+    let notes = [];
+
+    function renderNotes() {
+      noteList.innerHTML = '';
+      notes.forEach(function(note, index) {
+        const noteElement = document.createElement('tr');
+        noteElement.innerHTML = `
+          <td>${note.title}</td>
+          <td>${note.content}</td>
+          <td>
+            <button type="button" class="edit" data-index="${index}">Edit</button>
+            <button type="button" class="delete" data-index="${index}">Delete</button>
+          </td>
+        `;
+        noteList.appendChild(noteElement);
+      });
+    }
+
+    function addNote() {
+      const title = titleInput.value.trim();
+      const content = contentInput.value.trim();
+      if (title === '' || content === '') {
+        alert('Please enter a title and content');
+        return;
+      }
+      const note = { title, content };
+      notes.push(note);
+      alert('Note added successfully');
+      form.reset();
+      renderNotes();
+    }
+
+    function editNote() {
+      const index = parseInt(this.getAttribute('data-index'));
+      const note = notes[index];
+      titleInput.value = note.title;
+      contentInput.value = note.content;
+      indexInput.value = index;
+  addButton.style.display = 'none';
+  updateButton.style.display = 'block';
+  cancelButton.style.display = 'block';
+}
+
+function updateNote() {
+  const index = parseInt(indexInput.value);
+  const note = notes[index];
+  note.title = titleInput.value.trim();
+  note.content = contentInput.value.trim();
+  alert('Note updated successfully');
+  form.reset();
+  renderNotes();
+  addButton.style.display = 'block';
+  updateButton.style.display = 'none';
+  cancelButton.style.display = 'none';
+}
+
+function deleteNote() {
+  const index = parseInt(this.getAttribute('data-index'));
+  const note = notes[index];
+  if (confirm(`Are you sure you want to delete the note "${note.title}"?`)) {
+    notes.splice(index, 1);
+    alert('Note deleted successfully');
+    renderNotes();
+  }
+}
+
+addButton.addEventListener('click', addNote);
+noteList.addEventListener('click', function(event) {
+  if (event.target.classList.contains('edit')) {
+    editNote.call(event.target);
+  } else if (event.target.classList.contains('delete')) {
+    deleteNote.call(event.target);
+  }
+});
+updateButton.addEventListener('click', updateNote);
+cancelButton.addEventListener('click', function() {
+  form.reset();
+  addButton.style.display = 'block';
+  updateButton.style.display = 'none';
+  cancelButton.style.display = 'none';
+});
+  </script>
 </body>
 </html>
