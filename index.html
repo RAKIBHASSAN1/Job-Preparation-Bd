@@ -10,6 +10,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-bfZlB0C68e5bkQ2gj0b5yDYYFghejHEUI2aw+M/0ePsdH8IvJNzNmcABg25dCpTTrz1wNRcAb/NZkG3rC3mKXQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         .vertical-tabs {
@@ -110,6 +113,116 @@
                 text-align: left;
             }
         }
+
+        .container2 {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .form-container {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            margin-right: 20px;
+        }
+
+        .table-container {
+            flex: 2;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .form2 {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .form2 label {
+            margin-top: 10px;
+            flex-basis: 100%;
+        }
+
+        .form2 input[type="text"],
+        .form2 input[type="url"],
+        .form2 input[type="date"] {
+            width: 100%;
+            padding: 12px;
+        }
+
+        .form2 button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .form2 button:hover {
+            background-color: #45a049;
+        }
+
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .search-container label {
+            flex-basis: 100%;
+        }
+
+        .search-container input[type="date"],
+        .search-container input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            margin-right: 10px;
+        }
+
+        .search-container button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #45a049;
+        }
+
+        .table-container {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+
+
+        @media screen and (max-width: 600px) {
+            .container2 {
+                flex-direction: column;
+            }
+
+            .form-container,
+            .table-container {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -207,7 +320,50 @@
                             <div class="tab-pane fade" id="v-pills-job" role="tabpanel"
                                 aria-labelledby="v-pills-contact-tab">
                                 <h3>Job Circular</h3>
-                                <p>Content for Job Circular goes here.</p>
+                                <div class="container2">
+                                    <div class="form-container">
+                                        <form class="form2">
+                                            <label for="circular-name">Circular Name:</label>
+                                            <input type="text" id="circular-name" name="circular-name" required>
+
+                                            <label for="circular-link">Circular Link:</label>
+                                            <input type="url" id="circular-link" name="circular-link" required>
+
+                                            <label for="published-date">Published Date:</label>
+                                            <input type="date" id="published-date" name="published-date" required>
+
+                                            <label for="end-date">End Date:</label>
+                                            <input type="date" id="end-date" name="end-date" required>
+
+                                            <button type="button" onclick="addCircular()">Add Circular</button>
+                                        </form>
+                                    </div>
+                                    <div class="table-container">
+                                        <h2>View Circulars</h2>
+                                        <div class="search-container">
+                                            <label for="search-date">Search by Date:</label>
+                                            <input type="date" id="search-date" name="search-date">
+                                            <button type="button" onclick="searchByDate()">Search</button>
+                                        </div>
+                                        <div class="search-container">
+                                            <label for="search-name">Search by Name:</label>
+                                            <input type="text" id="search-name" name="search-name">
+                                            <button type="button" onclick="searchByName()">Search</button>
+                                        </div>
+                                        <table id="circular-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Circular Name</th>
+                                                    <th>Circular Link</th>
+                                                    <th>Published Date</th>
+                                                    <th>End Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="v-pills-genarnal" role="tabpanel"
                                 aria-labelledby="v-pills-contact-tab">
@@ -334,7 +490,50 @@
                             <div class="tab-pane fade" id="b-pills-job" role="tabpanel"
                                 aria-labelledby="v-pills-contact-tab">
                                 <h3>Job Circular</h3>
-                                <p>Content for Job Circular goes here.</p>
+                                <div class="container2">
+                                    <div class="form-container">
+                                        <form class="form2">
+                                            <label for="circular-name">Circular Name:</label>
+                                            <input type="text" id="circular-name" name="circular-name" required>
+
+                                            <label for="circular-link">Circular Link:</label>
+                                            <input type="url" id="circular-link" name="circular-link" required>
+
+                                            <label for="published-date">Published Date:</label>
+                                            <input type="date" id="published-date" name="published-date" required>
+
+                                            <label for="end-date">End Date:</label>
+                                            <input type="date" id="end-date" name="end-date" required>
+
+                                            <button type="button" onclick="addCircular()">Add Circular</button>
+                                        </form>
+                                    </div>
+                                    <div class="table-container">
+                                        <h2>View Circulars</h2>
+                                        <div class="search-container">
+                                            <label for="search-date">Search by Date:</label>
+                                            <input type="date" id="search-date" name="search-date">
+                                            <button type="button" onclick="searchByDate()">Search</button>
+                                        </div>
+                                        <div class="search-container">
+                                            <label for="search-name">Search by Name:</label>
+                                            <input type="text" id="search-name" name="search-name">
+                                            <button type="button" onclick="searchByName()">Search</button>
+                                        </div>
+                                        <table id="circular-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Circular Name</th>
+                                                    <th>Circular Link</th>
+                                                    <th>Published Date</th>
+                                                    <th>End Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="b-pills-genarnal" role="tabpanel"
                                 aria-labelledby="v-pills-contact-tab">
@@ -461,7 +660,50 @@
                             <div class="tab-pane fade" id="g-pills-job" role="tabpanel"
                                 aria-labelledby="v-pills-contact-tab">
                                 <h3>Job Circular</h3>
-                                <p>Content for Job Circular goes here.</p>
+                                <div class="container2">
+                                    <div class="form-container">
+                                        <form class="form2">
+                                            <label for="circular-name">Circular Name:</label>
+                                            <input type="text" id="circular-name" name="circular-name" required>
+
+                                            <label for="circular-link">Circular Link:</label>
+                                            <input type="url" id="circular-link" name="circular-link" required>
+
+                                            <label for="published-date">Published Date:</label>
+                                            <input type="date" id="published-date" name="published-date" required>
+
+                                            <label for="end-date">End Date:</label>
+                                            <input type="date" id="end-date" name="end-date" required>
+
+                                            <button type="button" onclick="addCircular()">Add Circular</button>
+                                        </form>
+                                    </div>
+                                    <div class="table-container">
+                                        <h2>View Circulars</h2>
+                                        <div class="search-container">
+                                            <label for="search-date">Search by Date:</label>
+                                            <input type="date" id="search-date" name="search-date">
+                                            <button type="button" onclick="searchByDate()">Search</button>
+                                        </div>
+                                        <div class="search-container">
+                                            <label for="search-name">Search by Name:</label>
+                                            <input type="text" id="search-name" name="search-name">
+                                            <button type="button" onclick="searchByName()">Search</button>
+                                        </div>
+                                        <table id="circular-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Circular Name</th>
+                                                    <th>Circular Link</th>
+                                                    <th>Published Date</th>
+                                                    <th>End Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="g-pills-genarnal" role="tabpanel"
                                 aria-labelledby="v-pills-contact-tab">
@@ -499,7 +741,11 @@
             </div>
         </div>
     </div>
-    <br><br>
+    <br><br><br><br>
+    <div></div>
+    <footer class="footer">© 2023 My Website</footer>
+
+
     <script>
         $(document).ready(function () {
             $('.nav-tabs a').click(function () {
@@ -599,6 +845,68 @@
             updateButton.style.display = 'none';
             cancelButton.style.display = 'none';
         });
+        let circulars = [];
+
+        function addCircular() {
+            // Get form values
+            let circularName = document.getElementById("circular-name").value;
+            let circularLink = document.getElementById("circular-link").value;
+            let publishedDate = document.getElementById("published-date").value;
+            let endDate = document.getElementById("end-date").value;
+
+            // Create circular object
+            let circular = {
+                circularName: circularName,
+                circularLink: circularLink,
+                publishedDate: publishedDate,
+                endDate: endDate
+            };
+
+            // Add circular to array
+            circulars.push(circular);
+
+            // Clear form
+            document.getElementById("circular-name").value = "";
+            document.getElementById("circular-link").value = "";
+            document.getElementById("published-date").value = "";
+            document.getElementById("end-date").value = "";
+
+            // Refresh table
+            displayCirculars();
+        }
+
+        function displayCirculars() {
+            let table = document.getElementById("circular-table");
+            let tbody = table.getElementsByTagName("tbody")[0];
+            tbody.innerHTML = "";
+
+            // Add each circular to table
+            circulars.forEach((circular) => {
+                let row = tbody.insertRow();
+                let nameCell = row.insertCell(0);
+                let linkCell = row.insertCell(1);
+                let publishedCell = row.insertCell(2);
+                let endCell = row.insertCell(3);
+                nameCell.innerHTML = circular.circularName;
+                linkCell.innerHTML = `<a href="${circular.circularLink}" target="_blank">${circular.circularLink}</a>`;
+                publishedCell.innerHTML = circular.publishedDate;
+                endCell.innerHTML = circular.endDate;
+            });
+        }
+
+        function searchByDate() {
+            let searchDate = document.getElementById("search-date").value;
+            let filteredCirculars = circulars.filter((circular) => circular.publishedDate === searchDate);
+            circulars = filteredCirculars;
+            displayCirculars();
+        }
+
+        function searchByName() {
+            let searchName = document.getElementById("search-name").value.toLowerCase();
+            let filteredCirculars = circulars.filter((circular) => circular.circularName.toLowerCase().includes(searchName));
+            circulars = filteredCirculars;
+            displayCirculars();
+        }
     </script>
 </body>
 
